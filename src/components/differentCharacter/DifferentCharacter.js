@@ -12,7 +12,6 @@ function DifferentCharacter() {
         let response = await fetch(`${environment.baseUrl}/character/${id}`)
         let data = await response.json();
         setCharacterDetails(data)
-        console.log(characterDetails)
     }
 
     const goBack = () => {
@@ -64,7 +63,6 @@ function DifferentCharacter() {
                             <h5> {characterDetails?.type || 'Unknown'} </h5>
                         </div>
                     </footer>
-
                 </main>
 
             </div>)

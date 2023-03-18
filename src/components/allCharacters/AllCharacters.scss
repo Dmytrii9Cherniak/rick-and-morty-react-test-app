@@ -78,6 +78,12 @@
       margin-top: 70px;
       margin-bottom: 45px;
 
+      .noItemsFoundAndIsLoading {
+        width: 100%;
+        text-align: center;
+        @include setupFontValues('Roboto', normal, 400, 48px, 56px, unquote(""));
+      }
+
       .differentCharacterItem {
         width: 240px;
         max-height: 244px;
@@ -141,7 +147,7 @@
 
 @media screen and (max-width: 1050px){
 
-  .allCharactersBlock {
+  .allCharacterBlock {
     .charactersContainer {
       padding-left: 13%;
       padding-right: 13%;
@@ -157,7 +163,7 @@
 
 @media screen and (max-width: 650px){
 
-  .allCharactersBlock {
+  .allCharacterBlock {
     .charactersContainer {
       width: 650px;
 
