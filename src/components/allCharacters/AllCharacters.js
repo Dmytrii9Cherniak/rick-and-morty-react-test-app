@@ -1,4 +1,5 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import '../allCharacters/AllCharacters.scss';
 import { environment } from '../../environment';
 import headerImage from '../../media/logoImg.png'
@@ -39,15 +40,17 @@ function AllCharacters() {
 
             <div className="fullCharactersList">
                 {characters.map(character =>
-                    <div key={character.id} className="differentCharacterItem">
-                        <div>
-                            <img src={character.image} alt="characterImage"/>
-                        </div>
-                        <main>
-                            <h4 className="characterName"> {character.name} </h4>
-                            <h4 className="characterSpecies"> {character.species} </h4>
-                        </main>
-                    </div>)
+                        <div key={character.id} className="differentCharacterItem">
+                            <Link to={`/characters/${character.id}`}>
+                                <div>
+                                    <img src={character.image} alt="characterImage"/>
+                                </div>
+                                <main>
+                                    <h4 className="characterName"> {character.name} </h4>
+                                    <h4 className="characterSpecies"> {character.species} </h4>
+                                </main>
+                            </Link>
+                        </div>)
                 }
             </div>
 
