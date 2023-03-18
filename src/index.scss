@@ -1,5 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@1,500&family=Inter:wght@200;300;400;500&family=Mulish:wght@300&family=Playfair+Display:wght@700&family=Roboto:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@1,500&family=Inter:wght@200;300;400;500&family=Karla:wght@700&family=Mulish:wght@300&family=Playfair+Display:wght@700&family=Roboto:wght@300;400;500;700&display=swap');
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+$basicGrayColor: rgba(0, 0, 0, 0.5);
+$basicRedColor: red;
+$basicWhiteColor: #FFFFFF;
+
+@mixin setupFontValues($fontFamily, $fontStyle, $fontWeight, $fontSize, $lineHeight, $letterSpacing) {
+  font-family: $fontFamily;
+  font-style: $fontStyle;
+  font-weight: $fontWeight;
+  font-size: $fontSize;
+  line-height: $lineHeight;
+  letter-spacing: $letterSpacing;
 }
