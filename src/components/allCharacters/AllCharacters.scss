@@ -1,0 +1,192 @@
+@import 'src/index.scss';
+
+.allCharacterBlock {
+  min-width: 100%;
+  width: auto;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .charactersContainer {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 1020px;
+    margin: 0 auto;
+
+    .headerImg {
+      min-width: 100%;
+      width: auto;
+      height: auto;
+      margin-top: 86px;
+      margin-bottom: 16px;
+      display: flex;
+      justify-content: center;
+
+      img {
+        max-width: 600px;
+        width: auto;
+        background-size: cover;
+        height: 200px;
+      }
+    }
+
+    .inputBlock {
+
+      .inputLabel {
+        position: relative;
+
+        svg {
+          position: absolute;
+          left: 21px;
+          top: 0;
+          color: $basicGrayColor;
+        }
+      }
+
+      input {
+        height: 56px;
+        width: 100%;
+        border: 1px solid $basicGrayColor;
+        color: $basicGrayColor;
+        border-radius: 8px;
+        padding-right: 26px;
+        margin-bottom: 15px;
+        padding-left: 48px;
+        box-sizing: border-box;
+        @include setupFontValues(Roboto, normal, 400, 16px, 150%, unquote(""));
+      }
+
+      input::placeholder {
+        border-radius: 8px;
+        @include setupFontValues(Roboto, normal, 400, 16px, 150%, unquote(""));
+      }
+
+      input:focus {
+        outline: none;
+      }
+    }
+
+    .fullCharactersList {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      column-gap: 20px;
+      row-gap: 24px;
+      margin-top: 70px;
+      margin-bottom: 45px;
+
+      .noItemsFoundAndIsLoading {
+        width: 100%;
+        text-align: center;
+        @include setupFontValues('Roboto', normal, 400, 48px, 56px, unquote(""));
+      }
+
+      .differentCharacterItem {
+        width: 240px;
+        max-height: 244px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        left: 730px;
+        top: 419px;
+        background: $basicWhiteColor;
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2), 0 3px 4px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.14);
+        border-radius: 4px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        a {
+          text-decoration: none;
+        }
+
+        &:hover {
+          transition: all 0.3s ease-in-out;
+          transform: scale(1.1);
+        }
+
+        img {
+          width: 240px;
+          height: 168px;
+          border-radius: 8px 8px 0 0;
+        }
+
+        .characterName {
+          @include setupFontValues(Roboto, normal, 500, 20px, 30px, 0.15px);
+          display: flex;
+          align-items: center;
+          color: rgba(0, 0, 0, 0.87);
+          mix-blend-mode: normal;
+        }
+
+        .characterSpecies {
+          @include setupFontValues(Roboto, normal, 400, 14px, 21px, 0.25px);
+          color: rgba(0, 0, 0, 0.6);
+          mix-blend-mode: normal;
+        }
+
+        main {
+          margin: 12px 16px 34px 16px;
+        }
+
+        &:hover {
+          cursor: pointer;
+        }
+
+      }
+    }
+    .noItemsFoundAndIsLoading {
+      width: 100%;
+      text-align: center;
+      @include setupFontValues('Roboto', normal, 400, 48px, 56px, unquote(""));
+    }
+  }
+}
+
+@media screen and (max-width: 1050px){
+
+  .allCharacterBlock {
+    .charactersContainer {
+      padding-left: 13%;
+      padding-right: 13%;
+    }
+
+    .fullCharactersList {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+}
+
+@media screen and (max-width: 650px){
+
+  .allCharacterBlock {
+    .charactersContainer {
+      width: 650px;
+
+      .headerImg {
+        padding: 0 5% 0 5%;
+
+        img {
+          width: 100%;
+          height: auto;
+        }
+      }
+      .inputBlock {
+        padding: 0 5% 0 5%;
+      }
+
+      .fullCharactersList {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        margin-top: 25px;
+      }
+
+    }
+  }
+
+}

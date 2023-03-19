@@ -1,0 +1,81 @@
+@import 'src/index.scss';
+
+.differentCharacterBlock {
+
+  .goBackBlock {
+    width: fit-content;
+    padding-left: 54px;
+    padding-top: 25px;
+    display: flex;
+    column-gap: 12px;
+    text-transform: uppercase;
+    @include setupFontValues('Karla', normal, 700, 18px, 21px, unquote(" "));
+    color: #000000;
+
+    &:hover {
+      cursor: pointer;
+      svg {
+        fill: $basicRedColor;
+      }
+      div {
+        color: $basicRedColor;
+      }
+
+    }
+  }
+
+  .charactersDetailsInfo {
+    margin-top: 51px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .image {
+      width: 300px;
+      height: 300px;
+
+      img {
+        border-radius: 50%;
+      }
+    }
+
+    .characterName {
+      margin-top: 16px;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      @include setupFontValues('Roboto', normal, 400, 48px, 56px, unquote(""));
+    }
+
+    .informations {
+      margin-top: 48px;
+      margin-bottom: 48px;
+      @include setupFontValues('Roboto', normal, 500, 20px, 24px, 0.15px);
+      color: #8E8E93;
+    }
+
+    .infoTable {
+      width: 413px;
+      margin-bottom: 75px;
+
+      .row {
+        width: auto;
+        min-width: 100%;
+        height: 64px;
+        padding: 9px 0 31px 16px;
+
+        & h5:nth-child(1) {
+          @include setupFontValues('Roboto', normal, 700, 16px, 24px, 0.15px);
+          color: #081F32;
+        }
+
+        & h5:nth-child(2) {
+          @include setupFontValues('Roboto', normal, 400, 14px, 20px, 0.25px);
+          color: #6E798C;
+        }
+
+      }
+    }
+
+  }
+}
