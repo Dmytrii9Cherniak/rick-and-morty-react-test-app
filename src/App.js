@@ -1,7 +1,7 @@
-import './App.scss';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import AllCharacters from './components/allCharacters/AllCharacters';
-import {Navigate, Route, Routes} from 'react-router-dom';
 import DifferentCharacter from './components/differentCharacter/DifferentCharacter';
+import './App.scss';
 
 function App() {
   return (<div className="fullAppBlock">
