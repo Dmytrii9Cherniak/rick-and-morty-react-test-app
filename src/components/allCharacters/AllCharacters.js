@@ -8,7 +8,7 @@ function AllCharacters() {
 
     const [characters, setCharacters] = useState([]);
     const [input, setInput] = useState({
-        findInputCharacter: ''
+        findInputCharacter: localStorage.getItem('findInputCharacter') || '',
     });
     const [isLoading, setIsLoading] = useState(false);
 
@@ -17,50 +17,52 @@ function AllCharacters() {
         try {
             const response = await fetch(`${environment.baseUrl}/character`);
             const data = await response.json();
-            setCharacters(data.results.sort((a, b) => a.name.localeCompare(b.name)));
-            setIsLoading(false);
+            setCharacters(
+                data.results.sort((a, b) => a.name.localeCompare(b.name))
+            );
         } catch (error) {
             console.log(error);
-            setIsLoading(false);
         }
+        setIsLoading(false);
     };
 
     const filterAllCharacters = async (event) => {
         const { value, name } = event.target;
         setInput({ ...input, [name]: value });
-        const params = new URLSearchParams();
-        if (name === 'findInputCharacter' && value.length) {
-            params.set('name', value);
-            setIsLoading(true);
-            try {
-                const response = await fetch(`${environment.baseUrl}/character?${params}`);
-                if (response.status === 404) {
-                    setCharacters([]);
-                    setIsLoading(false);
-                    return;
-                }
-                const data = await response.json();
-                const filteredResults = data?.results?.filter((character) => {
-                    const nameChars = character.name.toLowerCase().split('');
-                    const searchChars = value.toLowerCase().split('');
-                    return searchChars.every((char, index) => nameChars[index] === char);
-                }) || [];
-                setCharacters(filteredResults.sort((a, b) => a.name.localeCompare(b.name)));
-                setIsLoading(false);
-            } catch (error) {
-                console.log(error);
-                setIsLoading(false);
-            }
-        } else {
-            params.delete('name');
+        if (name !== 'findInputCharacter' || !value.length) {
             getAllCharacters();
+            localStorage.removeItem('findInputCharacter');
+            return;
         }
+        const params = new URLSearchParams({ name: value });
+        setIsLoading(true);
+        try {
+            const response = await fetch(`${environment.baseUrl}/character?${params}`);
+            const data = await response.json();
+            const filteredResults = data?.results?.filter((character) => {
+                const nameChars = character.name.toLowerCase().split('');
+                const searchChars = value.toLowerCase().split('');
+                return searchChars.every((char, index) => nameChars[index] === char);
+            }) || [];
+            setCharacters(
+                filteredResults.sort((a, b) => a.name.localeCompare(b.name))
+            );
+            localStorage.setItem('findInputCharacter', value);
+        } catch (error) {
+            console.log(error);
+        }
+        setIsLoading(false);
     };
 
     useEffect(() => {
-        getAllCharacters();
+        const savedInput = localStorage.getItem('findInputCharacter');
+        if (savedInput) {
+            setInput({ ...input, findInputCharacter: savedInput });
+            filterAllCharacters({ target: { name: 'findInputCharacter', value: savedInput } });
+        } else {
+            getAllCharacters();
+        }
     }, []);
-
 
     return (<main className="allCharacterBlock">
         <div className="charactersContainer">
